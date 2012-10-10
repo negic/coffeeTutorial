@@ -1,4 +1,5 @@
 $ ->
+
   $('.rollover').each ->
 
     # jQueryオブジェクトを用意
