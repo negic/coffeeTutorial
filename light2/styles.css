@@ -1,0 +1,15 @@
+*{
+	margin:0;
+	padding:0;
+}
+body {
+	padding:30px;
+}
+#light {
+	border:1px solid black;
+	width:200px;
+	margin:0 0 10px 63px;
+	padding:5px 0;
+	text-align:center;
+	cursor:pointer;
+}

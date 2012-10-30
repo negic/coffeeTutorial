@@ -1,7 +1,7 @@
 # Lightクラスを定義
 class Light
   constructor: ->
-    @powered = false
+    @powered = false # スイッチが入っているか否かフラグ
     @el = $('#light')
     @el.click => @toggle()
   powerOn: ->
