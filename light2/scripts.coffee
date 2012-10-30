@@ -10,13 +10,13 @@ class Light
     @powered = true
     @el.css 'background', 'yellow'
     # スイッチオン時に実行する関数を全部実行
-    $.each @powerOnCallbacks, (i, callback) -> callback()
+    for callback in @powerOnCallbacks then callback()
     @
   powerOff: ->
     @powered = false
     @el.css 'background', 'white'
     # スイッチオフ時に実行する関数を全部実行
-    $.each @powerOffCallbacks, (i, callback) -> callback()
+    for callback in @powerOffCallbacks then callback()
     @
   toggle: ->
     if @powered then @powerOff() else @powerOn()

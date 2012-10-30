@@ -16,20 +16,26 @@
     }
 
     Light.prototype.powerOn = function() {
+      var callback, _i, _len, _ref;
       this.powered = true;
       this.el.css('background', 'yellow');
-      $.each(this.powerOnCallbacks, function(i, callback) {
-        return callback();
-      });
+      _ref = this.powerOnCallbacks;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        callback = _ref[_i];
+        callback();
+      }
       return this;
     };
 
     Light.prototype.powerOff = function() {
+      var callback, _i, _len, _ref;
       this.powered = false;
       this.el.css('background', 'white');
-      $.each(this.powerOffCallbacks, function(i, callback) {
-        return callback();
-      });
+      _ref = this.powerOffCallbacks;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        callback = _ref[_i];
+        callback();
+      }
       return this;
     };
 
