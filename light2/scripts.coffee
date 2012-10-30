@@ -2,8 +2,8 @@
 class Light
   constructor: ->
     @powered = false # スイッチが入っているか否かフラグ
-    @powerOnCallbacks = []
-    @powerOffCallbacks = []
+    @powerOnCallbacks = [] # スイッチオン時に実行する関数ら
+    @powerOffCallbacks = [] # スイッチオフ時に実行する関数ら
     @el = $('#light')
     @el.click => @toggle()
   powerOn: ->
