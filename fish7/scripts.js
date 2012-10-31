@@ -86,20 +86,26 @@
   Fish = (function() {
 
     function Fish(options) {
-      this.options = options;
-      this.prepareEls();
-      this.handleColors();
-      this.eventify();
-      this.positionRandomly();
+      this.options = $.extend({}, this.defaultOptions, options);
+      this._prepareEls();
+      this._handleColors();
+      this._eventify();
+      this._positionRandomly();
     }
 
-    Fish.prototype.prepareEls = function() {
-      this.el = $('<div class="fish"><div>魚</div></div>');
+    Fish.prototype.defaultOptions = {
+      speed: 400,
+      color: 'black',
+      src: '<div class="fish"><div>魚</div></div>'
+    };
+
+    Fish.prototype._prepareEls = function() {
+      this.el = $(this.options.src);
       this.inner = $('div', this.el);
       return this;
     };
 
-    Fish.prototype.handleColors = function() {
+    Fish.prototype._handleColors = function() {
       this.inner.css({
         'color': this.options.color,
         'border-color': this.options.color
@@ -107,7 +113,7 @@
       return this;
     };
 
-    Fish.prototype.eventify = function() {
+    Fish.prototype._eventify = function() {
       var _this = this;
       this.el.on('mouseenter', function() {
         return _this.stop();
@@ -115,7 +121,7 @@
       return this;
     };
 
-    Fish.prototype.positionRandomly = function() {
+    Fish.prototype._positionRandomly = function() {
       this.el.css({
         left: randomNum(20, 260),
         top: randomNum(20, 160)
@@ -186,6 +192,7 @@
     var aquarium, light;
     aquarium = new Aquarium;
     light = new Light;
+    aquarium.addFish();
     aquarium.addFish({
       speed: 200,
       color: 'red'

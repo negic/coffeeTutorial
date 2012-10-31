@@ -2,7 +2,7 @@
 randomNum = (from, to) ->
   floor = Math.floor
   random = Math.random
-  from + floor( random() * (to - from + 1))
+  from + floor( random() * (to - from + 1) )
 
 # EventModuleクラスを定義
 class EventModule
@@ -40,29 +40,47 @@ class Light extends EventModule
 
 # Fishクラスを定義
 class Fish
+
   constructor: (options) ->
-    @options = options
-    @prepareEls()
-    @handleColors()
-    @eventify()
-    @positionRandomly()
-  prepareEls: ->
-    @el = $('<div class="fish"><div>魚</div></div>')
+
+    # デフォルトのオプション値を渡されたオプションで上書きする
+    @options = $.extend {}, @defaultOptions, options
+
+    # もろもろ準備
+    @_prepareEls()
+    @_handleColors()
+    @_eventify()
+    @_positionRandomly()
+
+  # デフォルトのオプション値
+  defaultOptions:
+    speed: 400
+    color: 'black'
+    src: '<div class="fish"><div>魚</div></div>'
+
+  # 内部的に呼ばれるメソッド群
+
+  _prepareEls: ->
+    @el = $(@options.src)
     @inner = $('div', @el)
     @
-  handleColors: ->
+  _handleColors: ->
     @inner.css
       'color': @options.color
       'border-color': @options.color
     @
-  eventify: ->
-    @el.on 'mouseenter', => @stop() # マウスがのったらストップ
+  _eventify: ->
+    @el.on 'mouseenter', => @stop()
     @
-  positionRandomly: ->
+  _positionRandomly: ->
+    # ランダムに位置を指定
     @el.css
       left: randomNum 20, 260
       top: randomNum 20, 160
     @
+
+  # 外部からも呼ばれるメソッド群
+  
   startMoving: ->
     toRight = left: 10
     toLeft = left: -10
@@ -72,7 +90,7 @@ class Fish
       @startMoving()
     @
   stop: ->
-    @inner.stop true # 止めてキューをクリア
+    @inner.stop true
     @
 
 # Aquariumクラスを定義
@@ -99,6 +117,7 @@ $ ->
   aquarium = new Aquarium
   light = new Light
 
+  aquarium.addFish() # オプション無し実行
   aquarium.addFish { speed: 200, color: 'red' }
   aquarium.addFish { speed: 300, color: 'orange' }
   aquarium.addFish { speed: 400, color: 'blue' }
