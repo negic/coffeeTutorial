@@ -31,11 +31,11 @@ class Aquarium
     @
   startAll: ->
     # 全部開始
-    $.each @fishItems, (i, fish) -> fish.startMoving()
+    for fish in @fishItems then fish.startMoving()
     @
   stopAll: ->
     # 全部停止
-    $.each @fishItems, (i, fish) -> fish.stop()
+    for fish in @fishItems then fish.stop()
     @
 
 # もろもろ実行

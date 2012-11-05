@@ -59,16 +59,22 @@
     };
 
     Aquarium.prototype.startAll = function() {
-      $.each(this.fishItems, function(i, fish) {
-        return fish.startMoving();
-      });
+      var fish, _i, _len, _ref;
+      _ref = this.fishItems;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        fish = _ref[_i];
+        fish.startMoving();
+      }
       return this;
     };
 
     Aquarium.prototype.stopAll = function() {
-      $.each(this.fishItems, function(i, fish) {
-        return fish.stop();
-      });
+      var fish, _i, _len, _ref;
+      _ref = this.fishItems;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        fish = _ref[_i];
+        fish.stop();
+      }
       return this;
     };
 
